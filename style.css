@@ -1,0 +1,156 @@
+/* font kalınlıklarını import ettik */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+/* :root => Bir html sayfada en üst düzey ebeveyn ögesini yani html etiketini temsil eder.
+    Root içeirsinde global değişken tanımlarken başlarına iki tane tire işareti koyulur.    
+*/
+:root{ 
+--Soft-blue: hsl(215, 51%, 70%);
+--Cyan: hsl(178, 100%, 50%);
+
+/* Neutral */
+--main-bg: hsl(217, 54%, 11%);
+--card-bg: hsl(216, 50%, 16%);
+--line: hsl(215, 32%, 27%);
+--white: hsl(0, 0%, 100%);
+}
+
+
+
+
+/* BU işaret sayfadaki tüm etiketlere ulaşır.*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* width değerinin anlamını değiştiriyor şeklinde düşünebiliriz.*/
+}
+
+
+body{
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    background-color: var(--main-bg);
+    color: hsl(0, 0%, 100%, 60%); /* white'a %60 opaklık ekledik.*/
+    padding: 1.25rem;
+}
+
+img{
+    max-width: 100%;  /* max-width'e verdiğimiz değer elementin en fazla alacağı genişliği belirler */
+}
+
+ul{
+    list-style-type: none; /* ul etiketlerinin başındaki noktaları siler */
+}
+
+p{
+    font-weight: 300;
+}
+
+
+.container {
+    padding: 1.25rem;
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.container h2{
+    color: var(--white);
+    margin: 1rem 0.5rem 0.5rem 0;
+}
+
+.container ul{
+    display: flex; /* container çindeki ögelere esneklik verir. */
+    align-items: center; /* nesneler ortalı bir şekilde dikey olarak  hizalanır.  */
+    justify-content:space-between; /* ilk nesne başta son nesne sonda olacak şekilde nesneler eşit olarak kapsayıcının içerisinde yatay olarak hizalanır.*/
+    padding: 2rem 0; /* üstte ve altta 2 solda ve sağda 0 boşluk bırakırız.*/
+    border-bottom: 1px solid var(--line); 
+}
+
+/* Bu .container ul li => ikonlarla isimler arasına boşluk koymak için bunları yaptık.*/
+.container ul li{
+    display: flex;
+    align-items: center;
+}
+.container ul li img{
+    margin-right: 0.5rem;
+}
+
+.container ul li:first-child{
+    color: var(--Cyan);
+}
+
+.container .avatar{
+    display: flex;
+    align-items: center;
+    justify-content: start; /* nesneleri en başta olacak şekilde yan yana sıralar */
+    padding-top: 2rem;
+}
+
+.container .avatar img{
+    width: 3.5rem;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.container .avatar p span{
+    color: var(--white);
+    font-weight: 400;
+}
+
+.attribution { 
+    font-size: 16px; 
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+/* Ekran genişliğine göre hareket olayı */
+@media (min-width:500px) {
+    .container{
+        width: 450px;
+        margin: 0 auto 1rem; /*üstten 0, sağda ve solda otomatik olarak ekran boyutuna göre, aşağıdan da 1rem'lik boşluk bırakacak şekilde hareket eder.*/
+    }  
+}
+
+
+/*  Hover olayı */
+.container h2:hover{
+    color: var(--Cyan);
+    cursor:pointer; /*imlec işareti*/
+}
+
+.container .avatar p span:hover{
+    color:var(--Cyan);
+    cursor:pointer;
+}
+
+.container .main-image{
+    position:relative; /* nesne normal akış içerisinde göreceli bir şekilde left-right-top-bottom gibi özellikleiyle konumlandırılabilir.*/
+}
+
+.container .main-image div{
+    position: absolute; /* normal akış içinden çıkar ve 4 köşeden konumlandırma yapmamızı sağlar */
+    top: 0; /*main-image'in tam üstüne gelmesi için böyle dedik*/
+    background-color: hsl(178, 100%, 50% ,60%); /* %60 opaklıkla cyan rengini aldık*/
+    width: 100%;
+    height: 100%;
+    z-index: 999;/*z-index, konumlandırma elementleri uygulanmış katmanların z-eksenindeki konumu belirlemek için kullanılır.*/  
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* imleci resmin üzerine götürüp, çekerken oluşan saniyelik olay*/
+}
+
+.container .main-image div:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.container .main-image div img{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /*yukarda left ve right ile tam merkezde olmamıştı bunu yazarak tam merkezde olmasını sağladık.*/
+}
+
